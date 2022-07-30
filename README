@@ -1,0 +1,57 @@
+
+cl-wav-synth
+
+Express noises as you think
+
+  Introduction
+
+   cl-wav-synth is a wav sample editor. It comes in two parts, the main
+   library for manipulating wav files and a (Mc)CLIM interface with a
+   full lisp listener, a sample pane editor, a spectrum pane editor and a
+   song pane editor.
+
+  Installation
+
+   To run the CLIM CLI interface of cl-wav-synth, you need a lisp
+   implementation* with asdf, [1]McCLIM and the CLIM Listener built in.
+   Then you can load the file load.lisp or edit it for tweaking.
+
+   * Tested with CMUCL (GNU/Linux x86, MacOS X), SBCL (GNU/Linux x86 and
+   PPC, MacOS X) and CLISP (GNU/Linux x86 and PPC, MacOS X and
+   MS-Windows)
+
+   With MS Windows, you must have the coolplayer in your path.
+   (http://coolplayer.sourceforge.net/)
+
+   By default, you'll nead the sox player (http://sox.sourceforge.net/) or
+   the mikmod library (http://mikmod.raphnet.net/) and cffi
+   (http://common-lisp.net/project/cffi/) loaded in your lisp image.
+   And indeed, if you want the McCLIM interface, you'll have to compile McCLIM
+   in your lisp image.
+
+  Description
+
+   cl-wav-synth is a wav sample editor. The wav sample editor is driven
+   from the lisp REPL: you can watch immediately the result of each
+   applied functions. cl-wav-synth comes with some effects as echo,
+   delay, pitch...
+
+   The spectrum editor is here just for educational purpose. It show the
+   effect of adding sinus together. But it can load spectrum from the
+   sharc project and can be used to produce instruments sounds (the
+   sample amplitude need to be modified to have a real sound).
+
+   The song editor is a way to express a song. A song is just a list of
+   events to write on a wav file. cl-wav-synth traverses the song list
+   and evaluates the form of each song-sample, if the result is a wav
+   sample, it is merged in the song wav file.
+
+  Licence
+
+   cl-wav-synth is under the [20]LLGPL licence (Lisp Lesser GNU Public
+   License).
+
+
+Have fun,
+
+Philippe Brochard

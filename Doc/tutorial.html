@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+ <title>cl-wav-synth</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+</head>
+
+<body>
+<h1><a id="top" name="top">
+CL-WAV-SYNTH: Express noises as you think
+</a></h1>
+<h2>This is a copy of the sample tutorial available with
+the 'Tutorial' command in cl-wav-synth.</h2><p>WAV> ,Load As Sample _(pathname)_ synth.wav
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Load a sample in the editor. Notice that you have the auto completion
+with Tab or Space key.
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> ,Load As Sample _(pathname)_ bomb.wav
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Load a sample in the editor
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> ,Set Length _(length)_ 100
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the display sample length
+
+</p><p>WAV> ,Set Index _(index)_ 10000
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the display sample index
+
+</p><p>WAV> ,Reset Bound Values
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> (<a href="documentation.html#HELP">help</a> '<a href="documentation.html#SET-SAMPLE">set-sample</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Show the help for the function set-sample
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#NULL-SAMPLE">null-sample</a> 0.01))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample to a null sample of 0.01 seconds length
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> (<a href="documentation.html#HELP">help</a> '<a href="documentation.html#SINUS-SAMPLE">sinus-sample</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Show the help for the function sinus-sample
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#SINUS-SAMPLE">sinus-sample</a> 0.01 1000))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample to a sinus sample of 0.01 seconds length
+and a frequency of 1000 Hz
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#NOISE-SAMPLE">noise-sample</a> 1 100))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample to a noise sample of 0.01 seconds length
+and a frequency of 100 Hz
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a>
+ (<a href="documentation.html#LINE-SAMPLE.">line-sample*</a> 1 200 :ampls
+               '((0 0) (0.1 10000) (0.2 5000) (0.4 30000) (0.5 -5000)
+                 (0.6 5000) (0.7 -10000) (0.8 -5000) (0.9 -20000) (1 0))))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample to a line sample defined with ampls parameters.
+For the first parameter of each control point, 0 is the period begining and
+1 is the end. The second parameter is the amplitude value
+
+</p><p>WAV> ,Set Length _(length)_ 200
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the display sample length
+
+</p><p>WAV> ,Set Amplitude _(amplitude)_ 40000
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the display sample amplitude
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#ENV">env</a> it (0 0) (0.1 1)))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample envelope. First parameter in second
+and the second parameter is the amplitude multiplicator
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#ENV">env</a> it (0.1 1) (0.2 0.68)))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample envelope. First parameter in second
+and the second parameter is the amplitude multiplicator
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#ENV-SINUS">env-sinus</a> it :start 0.2 :period 3 :min 0.5))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample envelope with a sinusoidale envelope.
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#ENV">env</a> it (0.8 1) (1 0)))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current sample envelope.
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#MIX">mix</a> it (<a href="documentation.html#ENV">env</a> (<a href="documentation.html#NOISE-SAMPLE">noise-sample</a> 1.5 200) (0 0) (0.5 0.1) (1.5 1))))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Mix the current sample and a noise sample of 1.5 seconds length and 200 Hz
+with a growing amplitude
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> ,Set Length _(Length)_ 150
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current length
+
+</p><p>WAV> ,Set Index _(Index)_ 10000
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the current index
+
+</p><p>WAV> ,Add Sample Flag _(Number)_ 1 _(Index)_ 10054 _(Amplitude)_ 19660
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Add a first sample flag
+
+</p><p>WAV> ,Add Sample Flag _(Number)_ 2 _(Index)_ 10100 _(Amplitude)_ 0
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Add a second sample flag
+
+</p><p>WAV> (<a href="documentation.html#FI">fi</a> 1)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Get the index for the first sample flag
+
+</p><p>WAV> (<a href="documentation.html#FI">fi</a> 2)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Get the index for the second sample flag
+
+</p><p>WAV> (setf (<a href="documentation.html#FI">fi</a> 2) 10032)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the second flag index
+
+</p><p>WAV> (<a href="documentation.html#FI">fi</a> 2)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Get the index for the second sample flag
+
+</p><p>WAV> (<a href="documentation.html#FT">ft</a> 2)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Get the second flag time in seconds
+
+</p><p>WAV> (<a href="documentation.html#FA">fa</a> 2)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Get the second flag amplitude
+
+</p><p>WAV> (setf (<a href="documentation.html#FA">fa</a> 2) 8000)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the second flag amplitude
+
+</p><p>WAV> (<a href="documentation.html#FA">fa</a> 2)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Get the second flag amplitude
+
+</p><p>WAV> (<a href="documentation.html#HELP">help</a> '<a href="documentation.html#CUT-I">cut-i</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Show the cut-i function help
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#CUT-I">cut-i</a> it (<a href="documentation.html#FI">fi</a> 2) (<a href="documentation.html#FI">fi</a> 1)))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Remove sample from flag 2 index to flag 1 index
+
+</p><p>WAV> ,Delete All Sample Flags
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Delete All Sample Flags
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> (<a href="documentation.html#HELP">help</a> '<a href="documentation.html#OCTAVIFY">octavify</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Show the octavify help
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#OCTAVIFY">octavify</a> it 1))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the sample to all tones
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> (<a href="documentation.html#UNDO">undo</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Undo the last effect
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#OCTAVE-UP">octave-up</a> it))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the sample to the next octave tone
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> (<a href="documentation.html#UNDO">undo</a>)<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Undo the last effect
+
+</p><p>WAV> (<a href="documentation.html#SET-SAMPLE">set-sample</a> (<a href="documentation.html#OCTAVIFY">octavify</a> it 0.8 '(:do :do :do :re :mi :re :do :mi :re :re :do)))<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Set the sample to 'Au clair de la lune'
+
+</p><p>WAV> _,Reset Bound Values_
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Adapt the display to the length of current sample
+
+</p><p>WAV> ,Play
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Play the current sample
+
+</p><p>WAV> End of tutorial
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;  => Thanks to have looked at this tutorial
+
+</p><p><small>(This documentation has been automatically generated with the
+function auto-doc-tutorial)</small></p>
+
+<div class="footer">
+     <a href="mailto:hocwp@free.fr">Philippe Brochard</a>, 2007 02 05
+   </div>
+   <div class="check">
+     <a href="http://validator.w3.org/check/referer">
+
+        Valid XHTML 1.0 Strict</a>
+  </div>
+ </body>
+</html>

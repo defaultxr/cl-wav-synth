@@ -1,0 +1,339 @@
+2007-01-31  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song-recorder.lisp: New file: record song from the keyboard.
+	This allow to bind some keys to sample and play it in real time.
+	The song is recorded and can then be edited by hand.
+
+2007-01-29  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (mikmod:*control-function*): The mikmod
+	player can now be stopped with a keypress.
+
+2007-01-28  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (mikmod-play): Add a mikmod player. It
+	call the internal mikmod library via cffi.
+
+2007-01-15  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp: Update to follow changes in McCLIM CVS
+	( near 0.9.4 ) -> Benefits of clim enhancements: color
+	highlighting, parentheses matching, selection...
+
+2006-10-25  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (wav-clim): No listener layout display a
+	1/9 listener (reduced but not hidden).
+
+	* cl-wav-synth.lisp (read-header): Pass unused headers. 
+	( thanks to Lui Fungsin ).
+
+2006-09-04  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (sample-draw-line*): Minor index bug fix.
+	(smooth-sample): Smooth the sample in linear-pitch and bezier-pitch.
+
+2006-09-03  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-sample-env.lisp (com-sample-draw-bezier-env): New function:
+	draw bezier envelope with mouse.
+	(com-sample-bezier-env): New function: Set sample envelope with a
+	bezier envelope.
+
+2006-09-02  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (com-ls): New function: shortcut to 
+	Show Directory.
+
+2006-08-30  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (show-command-history): Add show command history 
+	with the menu button.
+
+2006-08-29  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (com-edit-form): better edit form in listener.
+
+2006-08-28  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-tutorial.lisp (subst-in-tree-from-doc): Remove multiple reference
+	to the same function.
+
+	* cl-wav-synth-effect.lisp (filter): new function, generalisation of
+	filters. low/high/band-filter call this function.
+
+2006-08-27  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (local-pitch, linear-pitch): new functions.
+
+	* clim-sample-env.lisp (com-sample-env-click): Find the real
+	factor to draw the envelope.
+
+2006-08-26  Philippe Brochard  <hocwp@free.fr>
+
+	* *clim*: Remove silly double redisplay with redisplay-frame-pane...
+
+	* cl-wav-synth-effect.lisp (auto-doc-all): New function to
+	generate all cl-wav-synth documentation.
+
+2006-08-25  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (macplay): Added the Mac player
+	( QuickTime ).
+
+	* load.lisp: split cl-wav-synth.asd as cl-wav-synth.asd and
+	cl-wav-synth-clim.asd.
+
+	* cl-wav-synth-clim.lisp (com-load-as-sample, com-save-as-sample):
+	Add default pathname.
+
+	* clim-song.lisp: Move song/file menu to global file menu.
+
+2006-08-24  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (draw-song, draw-sample): Added grid
+	limits and sample limits to disable grid or sample vertbar when
+	they become to small.
+	(define-com-set-player): Add player choise menu.
+
+2006-08-23  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp: Bind zoom in/zoom out to mouse wheel
+	gesture and to meta+mouse button.
+
+	* clim-sample-env.lisp (com-sample-draw-env, com-sample-env):
+	added envelope manipulation with mouse.
+
+	* clim-sample.lisp (draw-sample-info-text): Extract draw-text as
+	label from com-find-sample-time-amplitude to be reusable.
+
+	* clim-song-selection.lisp (selection-find-first-point)
+	(selection-find-second-point): Print doc info to pointer-doc and
+	not to standard output.
+
+	* cl-wav-synth-effect.lisp (draw-env): Added a drawing function
+	on sample.
+	(convert-points-to-make-line): New function -> factorisation for
+	env and draw-env.
+
+	* cl-wav-synth-clim.lisp (wav-clim): Added song layout 1/2 2/3
+	and 2/3 1/3.
+
+2006-08-20  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (tone): use tones in french or english
+	eg: do, re... or c, d....
+	
+2006-08-17  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song.lisp (build-song-menu-command-table): Little change in
+	menu order.
+
+2006-08-16  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song.lisp (com-move-song-sample): Add s-save-undo in mouse
+	actions (move/copy/delete/add song-sample)
+	Removed unnecessary eval-song-sample (-> improved performance).
+
+2006-08-15  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song.lisp (draw-song): Always display grid from 0.
+
+2006-08-13  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-tutorial.lisp (define-tutorial): Add flags and octavify
+	tutorials.
+
+2006-08-11  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song-selection.lisp: add a selection system in song:
+	- move/copy/delete song-sample in selection
+	- add/delete tags in selection
+	- build and play the selection
+
+	* clim-facilities.lisp (s-map-fun): add *song-undo-redo-enabled?*
+	to save only one undo-song with s-map instead of all undos.
+
+2006-08-10  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-facilities.lisp (s-find): Generalisation of s-find as a
+	macro -> s-find can find numbers or conditions.
+	Ex: :time 10 is the same as :time (= time 10)
+	And :pos (and (< 1 pos) (< pos 2)) is a valid condition.
+	(help): Override help when clim is loaded to have a presentation
+	for each item.
+
+2006-08-09  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song.lisp (com-set-song-grid): Added a song grid system.
+
+	* clim-facilities.lisp (general-undo/redo/list-undo/clear-undo):
+	undo/redo system for sample and song (generalisation from the
+	previous sample undo/redo to sample and song)
+	
+
+	* cl-wav-synth.lisp (add-tags, del-tags): add and delete tags for
+	a song-sample.
+
+2006-08-08  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-facilities.lisp (s-find): new function to find sample-song
+	in a song -> factoristation (and more powerful).
+
+2006-08-07  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (octavify): octave functions to produce
+	all tones in a list.
+	(octavify-to-file): idem but write them in separate files
+	(defparameter-from-tones): define new parameters from tones
+	(defparameter-from-file): idem but from files produced with
+	octavify-to-file.
+
+	* clim-facilities.lisp (flag-copy, flag-insert, flag-cut): new functions
+	copy/cut/insert facilities with flags
+
+2006-08-06  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (tone): add tone (tone-up/down, octave-up/down)
+
+2006-08-05  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-facilities.lisp (fi, ft, fa): fi, ft, fa are now setfable.
+
+	* clim-sample-flags.lisp: add set flag values
+
+2006-08-04  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-song.lisp (convert-point-to-pane): new function -> factorisation
+	(convert-pane-to-point): new function -> factorisation
+
+	* clim-sample.lisp (draw-sample): display a message when 
+	channels >= 2
+	(convert-point-to-pane): new function -> factorisation
+	(convert-pane-to-point): new function -> factorisation
+
+	* cl-wav-synth-clim.lisp (app-sample-to-time): take care of
+	channels number
+
+	* Split cl-wav-synth-clim in cl-wav-synth-clim, clim-sample,
+	clim-sample-flags, clim-song, clim-facilities.
+	
+
+2006-08-03  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (sample-flag-command-table): Add flags in sample
+	(draw-song): Add axes
+
+2006-08-01  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (stereo-pan): new function - pan effect.
+
+	* cl-wav-synth-clim.lisp (com-save-as-song): new function
+	(com-save-as-sample): new function
+
+2006-07-29  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (present): Change ellipse to rectangle in
+	song drawing.
+	(drag-song-sample): Change ellipse to rectangle.
+
+2006-06-01  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (cmd-play): update shell command and
+	hide Unix/win differences.
+
+2006-05-29  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (build-song-from-match): added a building
+	song function from matching samples in song.
+
+	* cl-wav-synth.lisp (build-song-in-interval): added build a song
+	between begin and end seconds.
+
+2006-05-28  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp: minor documentation update.
+	(com-edit-form): Add listener editing capability.
+
+2006-05-26  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth.lisp (insert-sample): bugfix: insert-sample works
+	even with start time greater than the sample length.
+
+2006-05-25  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (play): Switch to coolplayer 
+	(http://coolplayer.sourceforge.net/) for the windows version.
+
+	* clim-tutorial.lisp: Added a copy of tutorial in text format and its
+	auto-documentation function.
+	(auto-doc-tutorial-html): add a tutorial html generator.
+	(auto-doc-tutorial-html): add an automatic reference in the cl-wav-synth
+	documentation.
+
+2006-05-24  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp: Added cut, insert, copy, cut-i,
+	insert-i and copy-i as wav functions.
+
+	* cl-wav-synth.lisp: Added insert-sample and cut-sample.
+
+2006-05-22  Philippe Brochard  <hocwp@free.fr>
+
+	* clim-tutorial.lisp (define-tutorial): Rewrite this part to avoid
+	'eval' and use a cleaner way.
+
+2006-05-21  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp (play): use sndrec32 instead of play32
+	MS-Windows. Change #+/-WIN to #+/-WIN32.
+	(auto-doc-html): set the date with current date.
+
+	* clim-tutorial.lisp: add a full sample editor tutorial.
+
+2006-05-20  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (draw-sample): set sample to null-sample
+	when no sample is defined.
+
+2006-05-19
+
+	* cl-wav-synth-effect.lisp (band-filter): truncate only when
+	writing s(n), other values (as s(n-1)) are floats.
+	
+	* cl-wav-synth-effect.lisp (reverse-sample): use find-smin-smax
+	instead of a hand writen converter.
+
+2006-05-18  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-effect.lisp: add low/high/band filters.
+
+	* cl-wav-synth-clim.lisp (wav-clim-song): add default width to 800
+	and heigth to 600.
+
+	* cl-wav-synth-effect.lisp (reverse-sample): add a reverse sample
+	function.
+
+2006-05-16  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (present): does not use with-scaling any
+	more, use convert-point-to-pane and convert-pane-to-point
+	instead. (-> solve a drag bug).
+	(present): and bounds check (only draw song samples on
+	screen). This fix a bug for long song (tested over 30 minute
+	song).
+
+	* cl-wav-synth.lisp (list-to-song): Use destructuring-bind instead
+	of first, second...
+	
+
+2006-05-09  Philippe Brochard  <hocwp@free.fr>
+
+	* cl-wav-synth-clim.lisp (com-read-song-filename): change
+	file-namestring to namestring => songs are loaded from there
+	directory.  
+	
+2006-05-08  Philippe Brochard  <hocwp@free.fr>
+
+	* First public release.
+	

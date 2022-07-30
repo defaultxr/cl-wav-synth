@@ -1,0 +1,518 @@
+CL-WAV-SYNTH: Express noises as you think
+
+
+This is the documentation for functions accessible from the listener
+
+
+HELP (&OPTIONAL NAME (STREAM *STANDARD-OUTPUT*))
+  Get the default help or a help on function
+  Use (help) or (help 'a_function_name) for more details
+
+LONG-HELP (&OPTIONAL (STREAM *STANDARD-OUTPUT*))
+  Get the help for each wav defined functions
+
+AUTO-DOC (FILENAME &OPTIONAL (TYPE TEXT))
+  Automatically generate the cl-wav-synth documentation from all exported functions and all tests.
+Type can be :text or :html
+
+MIX (SAMPLE1 SAMPLE2 &KEY (VOL1 1) (VOL2 1) (START 0))
+  Return a new sample with sample1 and sample2 mixed with volume vol1 and vol2,
+  the second sample begin a time 'start' seconds
+
+PITCH-UP (SAMPLE MUL)
+  Return a new sample pitched up
+
+PITCH-DOWN (SAMPLE MUL)
+  Return a new sample pitched down
+
+PITCH (SAMPLE MUL)
+  Return a new sample pitched with the mul value
+
+LOCAL-PITCH (SAMPLE PITCH START END)
+  Return a new sample pitched by pitch between start and end seconds
+
+LINEAR-PITCH (SAMPLE START-PITCH END-PITCH START END &KEY (INTERVAL 10)
+                     (MAX-NUM 30) (MAX-DEN 30))
+  Return a new sample with a linear pitch between start and end seconds
+starting with start-pitch and ending with end-pitch.
+
+BEZIER-PITCH (SAMPLE T1 P1 T2 P2 T3 P3 T4 P4 &KEY (INTERVAL 10) (MAX-NUM 30)
+                     (MAX-DEN 30))
+  Return a new sample pitched from t1 p1 to t4 p4 with two control points
+t2 p2 and t3 p3
+
+STEREO (SAMPLE1 &OPTIONAL SAMPLE2)
+  Return a new stereo sample with sample1 on channel 1 and
+  sample2 on channel 2
+
+STEREO-PAN (SAMPLE &OPTIONAL (PAN 0.5))
+  Return a new stereo sample with sample on channel 1 and 2 with
+pan=0.5 -> center, pan<0.5 -> left, pan>0.5 -> right
+
+QUADRI (SAMPLE1 SAMPLE2 SAMPLE3 SAMPLE4)
+  Return a new quadri sample with sample1 on channel 1,
+  sample2 on channel 2 and so on for channels 3 and 4
+
+VOLUME (SAMPLE NEW-VOL)
+  Return a new sample with volume multiplicated by new-vol
+
+DELAY (SAMPLE DELAY)
+  Return a new sample with a delay of 'delay' seconds
+
+ECHO (SAMPLE DELAY VOLUMES)
+  Return a new sample repeatated each 'delay' seconds with volumes
+  on the list volumes
+
+CUT (SAMPLE &OPTIONAL START END)
+  Return a new sample without the cutted part from
+start to end in seconds
+
+INSERT (SAMPLE SAMPLE2 START)
+  Return a new sample with sample2 inserted at start seconds
+
+COPY (SAMPLE &OPTIONAL START END)
+  Return a new sample build from the original sample between
+start and end seconds
+
+CUT-I (SAMPLE &OPTIONAL START-I END-I)
+  Return a new sample without the cutted part from
+start to end in index numbers
+
+INSERT-I (SAMPLE SAMPLE2 START-I)
+  Return a new sample with sample2 inserted at start in
+index number
+
+COPY-I (SAMPLE &OPTIONAL START-I END-I)
+  Return a new sample build from the original sample between
+start and end in index numbers
+
+ENV-FUN (SAMPLE POINTS)
+  Set sample envelope. Points is a list like
+   (list (time1 volume1) (time2 volume2) ...)
+
+ENV (SAMPLE &REST POINTS)
+  Set sample envelope. Points are (time1 volume1) (time2 volume2)...
+
+ENV-SINUS (SAMPLE &KEY (START 0) END (PERIOD 1) (MIN -1) (MAX 1))
+  Set sample envelope with a sinus function. Start and end are in seconds,
+  period is the number of periods between start and end and min/max are
+  volume multiplicators
+
+ENV-BEZIER (SAMPLE T1 V1 T2 V2 T3 V3 T4 V4)
+  Set sample envelope with a bezier curve with t1 v1 and t4 v4
+as endpoints and t2 v2 and t3 v3 as control points
+
+NULL-SAMPLE (TIME &KEY (SPS 22050) (BPS 16))
+  Create a muted sample.
+   sps = sample per seconds
+   bps = bits per sample
+
+SINUS-SAMPLE (TIME FREQ &KEY (SPS 22050) (BPS 16) (AMPL 32767) (PHASE 0))
+  Create a sinus sample.
+   sps = sample per seconds
+   bps = bits per sample
+
+SQUARE-SAMPLE (TIME FREQ &KEY (SPS 22050) (BPS 16) (MIN -32767) (MAX 32767))
+  Create a square sample.
+   sps = sample per seconds
+   bps = bits per sample
+   min and max = amplitudes
+
+LINE-SAMPLE (TIME FREQ &KEY (SPS 22050) (BPS 16) (MIN -32767) (MAX 32767))
+  Create a line sample.
+   sps = sample per seconds
+   bps = bits per sample
+   min and max = amplitudes
+
+LINE-SAMPLE* (TIME
+              FREQ
+              &KEY
+              (SPS 22050)
+              (BPS 16)
+              (AMPLS '((0 -32767) (1 32767))))
+  Create a line sample based on control points.
+   sps = sample per seconds
+   bps = bits per sample
+   ampls = List of amplitudes like '((val1 ampl1) (val2 ampl2)...)
+           where 0 (sample begining) <= val <= 1 (sample end)
+
+NOISE-SAMPLE (TIME FREQ &KEY (SPS 22050) (BPS 16) (MIN -32767) (MAX 32767))
+  Create a noise sample.
+   sps = sample per seconds
+   bps = bits per sample
+   min and max = amplitudes
+
+DRAW-ENV-FUN (SAMPLE POINTS)
+  Draw sample envelope. Points is a list like
+   (list (time1 volume1) (time2 volume2) ...)
+
+DRAW-ENV (SAMPLE &REST POINTS)
+  Draw sample envelope. Points are (time1 volume1) (time2 volume2)...
+
+DRAW-ENV-BEZIER (SAMPLE T1 A1 T2 A2 T3 A3 T4 A4)
+  Draw sample envelope with a bezier curve with t1 a1 and t4 a4
+as endpoints and t2 a2 and t3 a3 as control points
+
+PLAYER-INFO NIL
+  Display informations about the current player
+
+MIKMOD-PLAY (&REST ARGS)
+  Play each samples with the mikmod library
+
+SOX-PLAY (&REST SAMPLES)
+  Call the sox play command on all samples
+
+DPLAY (&REST SAMPLES)
+  Call the default player command on all samples with the mikmod library
+  (if compiled in) or from the sox play command
+
+XMMS (&REST SAMPLES)
+  Call xmms on all samples (a sample class or a filename)
+
+SND (&REST SAMPLES)
+  Call snd on all samples (a sample class or a filename)
+
+AUDACITY (&REST SAMPLES)
+  Call audacity on all samples (a sample class or a filename)
+
+AUD (&REST SAMPLES)
+  Call audacity on all samples (a sample class or a filename)
+
+COOL-PLAYER (&REST SAMPLES)
+  Call cool-player on all samples (a sample class or a filename)
+
+TOTEM (&REST SAMPLES)
+  Call totem on all samples (a sample class or a filename)
+
+BMP (&REST SAMPLES)
+  Call beep-media-player on all samples (a sample class or a filename)
+
+MACPLAY (&REST SAMPLES)
+  Call the Mac player on all samples (a sample class or a filename)
+
+PLAY (&REST SAMPLES)
+  Default player, call play or coolplayer on Windows on all samples
+ (a sample class or a filename)
+
+SET-PLAYER (&OPTIONAL PLAYER)
+  Set the default player called with the 'play' function
+
+REVERSE-SAMPLE (SAMPLE &KEY (START 0) END)
+  Return a reversed sample from time start to end in seconds
+
+FILTER (SAMPLE &OPTIONAL (AN '(1)) (BN '(0)))
+  Apply a general filter on sample.
+Filter is: s(n) = a0 e(n) + a1 e(n-1) + a2 e(n-2) + ...
+                + b0 s(n-1) + b1 s(n-2) + b3 s(n-3) + ...
+an and bn are list of coefficients.
+Example: (filter sample '(0.3 0.2 0.1) '(0.1 0.2 0.3))
+
+LOW-FILTER (SAMPLE F0)
+  Apply a low filter to sample where f0 is the cut frequency
+H(f) = 1/(1 + j f/f0) -> s(n) = a e(n) + (1-a) s(n-1)
+a=Te/(tau+Te) with tau=1/(2 pi f0)
+
+HIGH-FILTER (SAMPLE F0)
+  Apply a high filter to sample where f0 is the cut frequency
+H(f) = 1/(1 + j f0/f) -> s(n) = a e(n) - a e(n-1) + a s(n-1)
+a=tau/(tau+Te) with tau=1/(2 pi f0)
+
+BAND-FILTER (SAMPLE F0 &OPTIONAL (Q 1))
+  Apply a band filter to sample where f0 is the cut frequency
+and Q is the quality coefficient.
+H(f) = 1/(1 + j Q (f/f0 - f0/f))
+-> d s(n) = a e(n) - a e(n-1) + b s(n-1) + c s(n-2)
+with a=tau/Te  b=a+2 Q^2 a^2  c=-Q a^2  d=a+Q+Q a^2
+
+CHANNEL (SAMPLE CHAN)
+  Extraxt channel 'chan' from sample
+
+TONE-LIST NIL
+  Return the tone list
+
+MAIN-TONE-LIST NIL
+  Return the main tone list
+
+TONE-LIST-EN NIL
+  Return the tone list (english)
+
+MAIN-TONE-LIST-EN NIL
+  Return the main tone list (english)
+
+TONE-UP (SAMPLE &OPTIONAL (TONE-NUMBER 1) (MAX-NUM 30) (MAX-DEN 30))
+  Tone up the sample by tone-number
+
+TONE-DOWN (SAMPLE &OPTIONAL (TONE-NUMBER 1) (MAX-NUM 30) (MAX-DEN 30))
+  Tone down the sample by tone-number
+
+TONE (SAMPLE FROM TO &OPTIONAL (MAX-NUM 30) (MAX-DEN 30))
+  Tone the sample from a tone to another
+From and to are keywords: do do# re re# mi fa fa# sol sol# la la# si
+                     or   c  c#  d  d#  e  f  f#  g   g#   a  a#  b
+
+OCTAVE-UP (SAMPLE &OPTIONAL (MAX-NUM 30) (MAX-DEN 30))
+  Return a new sample in the next octave with same tone
+
+OCTAVE-DOWN (SAMPLE &OPTIONAL (MAX-NUM 30) (MAX-DEN 30))
+  Return a new sample in the previous octave with same tone
+
+OCTAVIFY (SAMPLE DELAY &OPTIONAL (TONES (MAIN-TONE-LIST)))
+  Return a new sample with tones in the tones list (it can be the main tone or
+all melody tones) separated with delay in seconds.
+
+FILE-TONE (BASE TONE)
+  Return the filename of a file based on his base and his tone
+
+SYMBOL-TONE (BASE TONE)
+  Return a new symbol based on his base and his tone
+
+OCTAVIFY-TO-FILE (SAMPLE FILENAME-BASE &OPTIONAL (TONES (MAIN-TONE-LIST)))
+  Write sample in all tones in the file filename-base-tone_number-tone.
+ex: piano-03-re.wav. Produce one file per tone
+
+DEFPARAMETER-FROM-TONES (SAMPLE SYMBOL-BASE &REST TONES)
+  Define some new symbols based on there tones.
+Symbol are symbol-base-tone. ex: piano-re
+
+DEFPARAMETER-FROM-FILE (FILENAME-BASE SYMBOL-BASE &REST TONES)
+  Define some new symbols based on there tones from files produced with
+octavify-to-file for example. Symbol are symbol-base-tone. ex: piano-re
+
+LIST-ALL-TEST (&OPTIONAL (STREAM *STANDARD-OUTPUT*))
+  List all available tests
+
+PRINT-TEST (NUM &OPTIONAL (STREAM *STANDARD-OUTPUT*))
+  View the code for test 'num'
+
+S-FIND (&KEY TIME FORM POS TAGS COLOR LENGTH ALL)
+  Return a list of all song samples matching time/form/pos/tags/color/length.
+time, pos, color and length can be real numbers or conditions.
+For examples:
+  :time (= time 10) is the same as :time 10
+  :pos (< 1 pos 2) find all samples with a position between 1 and 2
+    and is the same as :pos (and (< 1 pos) (< pos 2))
+Tags can be a symbol, a number or a list (or something else)
+If tags is a list check for its members
+For examples:
+  :tags sel find all tags with sel in it.
+     ex: (bar sel foo) and sel match
+  :tags (sel bar) find all tags with sel and bar in it
+     ex: (bar sel foo) match
+
+S-ADD (&KEY (TIME 0) FORM (POS 0) TAGS (COLOR 65280) (LENGTH 0.2))
+  Add a sample on song
+
+S-COPY (SONG-SAMPLE &KEY TIME FORM POS TAGS COLOR LENGTH)
+  Copy a sample in a song
+
+S-DELETE (&KEY TIME FORM POS TAGS COLOR LENGTH ALL)
+  Delete samples matching time/form/pos/tags/color/length as in s-find
+
+S-MAP-FUN (&KEY TIME FORM POS TAGS COLOR LENGTH ALL FUN)
+  Map a function over a sample in a song matching time/form/pos/tags/color/length
+as in s-find. When 'all' is true, map on all samples in the song
+
+S-MAP ((&KEY TIME FORM POS TAGS COLOR LENGTH ALL) &BODY BODY)
+  Apply body on sample matching time/form/pos/tags/color/length as in s-find.
+   Capture intentionally the sample into the variable 'it'
+   and sample slots (as time, form, pos and tags) are bounds.
+   When 'all' is true, apply on all samples in the song
+
+S-PRINT (SONG-SAMPLE)
+  Print a sample in a song
+
+WITH-SONG (&BODY BODY)
+  Apply body on the current loaded song. Capture intentionally the song
+  in the variable 'it'. (Note: a song is just a list of song-sample)
+
+SET-SONG (&BODY BODY)
+  Set the current loaded song with the result of body.
+  Capture intentionally the song in the variable 'it'.
+  (Note: a song is just a list of song-sample)
+
+BUILD-SONG-FROM-MATCH (FILENAME &KEY TIME FORM POS TAGS COLOR LENGTH ALL)
+  Build a song in filename with samples in a song matching time/form/pos/tags/color/length
+as in s-find.
+   When 'all' is true, build from all samples in the song
+
+S-SAVE-UNDO NIL
+  Save the current song form undo/redo operation
+
+S-UNDO (&OPTIONAL (LEVEL NIL))
+  Undo the effect of last song operation
+
+S-REDO (&OPTIONAL (LEVEL NIL))
+  Redo the effect of last song operation
+
+S-CLEAR-UNDO (&OPTIONAL (MAX-LEVEL 100))
+  Clear all undo/redo saved states for song
+
+S-LIST-UNDO (&OPTIONAL (MAX-LEVEL 100))
+  List all undo/redo saved states for song
+
+WITH-SAMPLE (&BODY BODY)
+  Apply body on the current loaded sample. Capture intentionally the sample
+  into the variable 'it'
+
+SET-SAMPLE (&BODY BODY)
+  Set the current loaded sample with the result of body.
+   Capture intentionally the sample into the variable 'it'.
+   And save the result with a undo/redo method
+
+SAVE-UNDO NIL
+  Save the current sample form undo/redo operation
+
+UNDO (&OPTIONAL (LEVEL NIL))
+  Undo the effect of set-sample
+
+REDO (&OPTIONAL (LEVEL NIL))
+  Redo the effect of set-sample
+
+CLEAR-UNDO (&OPTIONAL (MAX-LEVEL 100))
+  Clear all undo/redo saved states
+
+LIST-UNDO (&OPTIONAL (MAX-LEVEL 100))
+  List all undo/redo saved states
+
+FI (NUMBER)
+  Return the index of the sample flag 'number' (setfable)
+
+FT (NUMBER)
+  Return the time of the sample flag 'number' (setfable)
+
+FA (NUMBER)
+  Return the amplitude of the sample flag 'number' (setfable)
+
+FLAG-CUT (SAMPLE FLAG-NUMBER1 FLAG-NUMBER2)
+  Return a new sample without the cutted part between
+flag-number1  flag-number2
+
+FLAG-COPY (SAMPLE FLAG-NUMBER1 FLAG-NUMBER2)
+  Return a new sample build from the original sample between
+flag-number1 and flag-number2
+
+FLAG-INSERT (SAMPLE FLAG-NUMBER1 FLAG-NUMBER2 FLAG-NUMBER3)
+  Return a new sample with part between flag-number1 and flag-number2
+inserted at flag-number3 time
+
+TUTORIAL (&OPTIONAL (HIT-DELAY 0.1))
+  Run a tutorial to demonstrate a use of the sample editor
+
+NEXT-TUTORIAL NIL
+  Run the next tutorial step
+
+AUTO-DOC-TUTORIAL (FILENAME &OPTIONAL (TYPE TEXT))
+  automatically create a tutorial documentation of cl-wav-synth. Type can be :text or :html
+
+AUTO-DOC-ALL (&OPTIONAL (DIRECTORY Doc/))
+  Automatically generate all cl-wav-synth documentations: main documentation
+and tutorial documentation
+
+ADD-SONG-KEY (&KEY CHAR FORM POS TAGS COLOR)
+  Define a new key for the song recorder.
+char is a character or it'll be asked from a keypress.
+form, pos, tags and color are the attribute of a song-sample
+
+ADD-SONG-KEY-TONE (FORM &REST DEF)
+  Define some new keys for the song recorder.
+Def is a list like this '(char1 keyword) '(char2 keyword2) ...
+charN is a key to press in the recorder.
+keywordN is a tone (:do :re ... or :c :d ...)
+
+ADD-SONG-KEY-OCTAVE (FORM DEF)
+  Define some new keys for the song recorder.
+Def is a list of characters to bind. The first char is :do (or :c), the
+second :re (or :d) and so on...
+
+EDIT-SONG-KEY (&KEY CHAR FORM POS TAGS COLOR)
+  Edit a key for the song recorder.
+char is a character or it'll be asked from a keypress.
+form, pos, tags and color are the attribute of a song-sample
+
+REMOVE-SONG-KEY (&OPTIONAL CHAR)
+  Remove a key for the song recorder
+
+SHOW-SONG-RECORDER-INFO NIL
+  Show all keys defined for the song recorder
+
+RECORD-SONG (&OPTIONAL (DELAY 0.01))
+  Record a new song with a virtual keyboard. You can define new
+keys with add-song-key. Delay is the key granularity.
+
+SAVE-SONG-KEYS (FILENAME)
+  Save the current keys for the song recorder
+
+LOAD-SONG-KEYS (FILENAME)
+  Load keys for the song recorder
+
+
+
+Available tests are:
+
+TEST1: Test read-sample, print-header and write-sample on a test WAV file
+TEST2: Test read-sample, print-header and write-sample on another test WAV file
+TEST3: Test sample-make-noise on a one channel sample
+TEST4: Test sample-make-noise and sample-make-sin on a two channels sample
+TEST5: Test sample-make-square and sample-make-sin
+TEST6: Test sample-make-line*
+TEST7: Test sample-make-line and sample-make-line*
+TEST8: Test four channels sample
+TEST9: Test copy-sample -> selection of a small piece of sample
+TEST1000: Helper function to create sample test
+TEST1005: Helper function to test copy-sample
+TEST10: Test copy-sample on a one channel sample
+TEST11: Test copy-sample on a two channels / 32 bits sample
+TEST12: Test copy-sample on a three channels sample
+TEST13: Test copy-sample on a four channels sample
+TEST14: Test copy-sample on a five channels sample
+TEST1010: Helper function to test read-sample
+TEST15: Test read-sample with start / end time on a one channel sample
+TEST16: Test read-sample with start / end time on a two channel sample
+TEST17: Test read-sample with start / end time on a three channel sample
+TEST18: Test read-sample with start / end time on a four channel sample
+TEST19: Test read-sample with start / end time on a five channel sample
+TEST1015: Helper function to test write sample
+TEST20: Test write-sample with start / end time on a one channel sample
+TEST21: Test write-sample with start / end time on a two channel sample
+TEST22: Test write-sample with start / end time on a three channel sample
+TEST23: Test write-sample with start / end time on a four channel sample
+TEST24: Test write-sample with start / end time on a five channel sample
+TEST25: Test direct access to data sample
+TEST26: Test add channel on a sample
+TEST27: Test extract-channel from a sample
+TEST28: Test add-channel (with start time) and extract-channel
+TEST29: Test mix-sample
+TEST30: An other mix-sample test
+TEST31: Test apply-on-sample
+TEST32: An other apply-on-sample test -> distortion
+TEST33: Test pitch-up
+TEST34: Test pitch-down
+TEST35: Test pitch (a mix of pitch-down and pitch-up)
+TEST36: Test time<->freq convert sample to spectre
+TEST40: Test build song
+TEST41: Test build song (2)
+TEST42: Test build song (3)
+TEST43: Test build song form list
+TEST44: Test with-build-song
+TEST45: Test with-song
+TEST46: Test write-song
+TEST47: Test read-song
+TEST100: Simple Clim test: display a sample
+TEST101: Simple Clim test: display a spectre
+TEST102: Simple Clim test: display a sample build from frequences
+TEST103: Simple Clim test: display a sample build from frequences (2)
+TEST104: Simple Clim test: display a sample build from frequences (3)
+TEST105: Simple Clim test: display a sample build from frequences
+TEST106: Simple Clim test: display a sample build from frequences
+TEST120: Test write and read 16 bits
+TEST121: Test write and read 8 bits
+TEST122: Test write and read 32 bits
+TEST123: Test write, read and append 16 bits
+TEST124: Test write, read and append 8 bits
+TEST125: Test write, read and append 32 bits
+TEST140: Test build song
+
+
+(This documentation has been automatically generated with the
+function auto-doc)
+

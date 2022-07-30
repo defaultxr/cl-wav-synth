@@ -1,0 +1,75 @@
+*Note*: cl-wav-synth depends on McCLIM, a graphic toolkit for Common Lisp
+(http://www.cliki.net/McCLIM) and CLX, a low level, Xlib-like library
+on top of which McCLIM is built (http://www.cliki.net/CLX). Make sure
+these are properly installed on your system before attempting to install
+cl-wav-synth.
+
+Install instructions for cl-wav-synth.  We assume that if you have gotten
+this far, it means that you have either extracted a tar file with
+everything in it, or checked out the files from some CVS repository.
+
+1. Get ASDF : http://www.cliki.net/asdf
+
+   * (load (compile-file "asdf.lisp"))
+
+2. Load McCLIM in your lisp implementation:
+
+   * (push "/where/is/mcclim/" asdf:*central-registry*)
+
+   * (push "/where/is/mcclim/spatial-trees/" asdf:*central-registry*)
+
+   * (asdf:oos 'asdf:load-op :mcclim)
+
+3. Load the McCLIM listener 
+
+   * (asdf:oos 'asdf:load-op :clim-listener)
+
+3'. Optionally, you can save a lisp image with McCLIM and the listener
+   loaded in:
+
+   * (save-lisp "cmucl-mcclim.core")          ; for CMUCL
+   * (save-lisp-and-die "sbcl-mcclim.core")   ; for SBCL
+   * (saveinitmem "clisp-mcclim.core")        ; for CLISP
+
+   You can then load the core image with the appropriate command line.
+
+4. If you want to play sounds with the mikmod library, you have to
+   load cffi from http://common-lisp.net/project/cffi/.
+   If cffi is not found the default player is the sox player. In the
+   other case, the mikmod library is used as the default player.
+
+   * (push "/where/is/cffi/" asdf:*central-registry*)
+
+   * (asdf:oos 'asdf:load-op :cffi)
+
+5. Optionally, you can edit cl-wav-synth.lisp and
+   cl-wav-synth-clim.lisp to set the default values for cl-wav-synth.
+   The default player is dplay and call 'play' the sox player. So be
+   sure to have sox installed in your system or change the default
+   value in cl-wav-synth.lisp.
+
+6. Load cl-wav-synth
+
+   * (push "/where/is/cl-wav-synth/" asdf:*central-registry*)
+
+   * (asdf:oos 'asdf:load-op :cl-wav-synth)   ; Optional
+
+   * (asdf:oos 'asdf:load-op :cl-wav-synth-clim)
+
+   Another way to do this step in to load the file load.lisp in your
+   system.
+
+
+7. Run cl-wav-synth
+
+   * (wav-clim:run)
+
+8. And have a look to the help
+
+   WAV> (help)
+
+
+Have fun,
+
+
+Philippe Brochard.

@@ -1,0 +1,646 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+ <title>cl-wav-synth</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+</head>
+
+<body>
+<h1><a id="top" name="top">
+CL-WAV-SYNTH: Express noises as you think
+</a></h1>
+<p><a href="#functions">[Functions]</a>
+<a href="#tests">[Tests]</a>
+</p>
+<h2><a id="functions" name="functions">This is the documentation for
+functions accessible from the listener</a></h2><ul>
+<li><a href="#HELP">HELP</a></li>
+<li><a href="#LONG-HELP">LONG-HELP</a></li>
+<li><a href="#AUTO-DOC">AUTO-DOC</a></li>
+<li><a href="#MIX">MIX</a></li>
+<li><a href="#PITCH-UP">PITCH-UP</a></li>
+<li><a href="#PITCH-DOWN">PITCH-DOWN</a></li>
+<li><a href="#PITCH">PITCH</a></li>
+<li><a href="#LOCAL-PITCH">LOCAL-PITCH</a></li>
+<li><a href="#LINEAR-PITCH">LINEAR-PITCH</a></li>
+<li><a href="#BEZIER-PITCH">BEZIER-PITCH</a></li>
+<li><a href="#STEREO">STEREO</a></li>
+<li><a href="#STEREO-PAN">STEREO-PAN</a></li>
+<li><a href="#QUADRI">QUADRI</a></li>
+<li><a href="#VOLUME">VOLUME</a></li>
+<li><a href="#DELAY">DELAY</a></li>
+<li><a href="#ECHO">ECHO</a></li>
+<li><a href="#CUT">CUT</a></li>
+<li><a href="#INSERT">INSERT</a></li>
+<li><a href="#COPY">COPY</a></li>
+<li><a href="#CUT-I">CUT-I</a></li>
+<li><a href="#INSERT-I">INSERT-I</a></li>
+<li><a href="#COPY-I">COPY-I</a></li>
+<li><a href="#ENV-FUN">ENV-FUN</a></li>
+<li><a href="#ENV">ENV</a></li>
+<li><a href="#ENV-SINUS">ENV-SINUS</a></li>
+<li><a href="#ENV-BEZIER">ENV-BEZIER</a></li>
+<li><a href="#NULL-SAMPLE">NULL-SAMPLE</a></li>
+<li><a href="#SINUS-SAMPLE">SINUS-SAMPLE</a></li>
+<li><a href="#SQUARE-SAMPLE">SQUARE-SAMPLE</a></li>
+<li><a href="#LINE-SAMPLE">LINE-SAMPLE</a></li>
+<li><a href="#LINE-SAMPLE.">LINE-SAMPLE*</a></li>
+<li><a href="#NOISE-SAMPLE">NOISE-SAMPLE</a></li>
+<li><a href="#DRAW-ENV-FUN">DRAW-ENV-FUN</a></li>
+<li><a href="#DRAW-ENV">DRAW-ENV</a></li>
+<li><a href="#DRAW-ENV-BEZIER">DRAW-ENV-BEZIER</a></li>
+<li><a href="#PLAYER-INFO">PLAYER-INFO</a></li>
+<li><a href="#MIKMOD-PLAY">MIKMOD-PLAY</a></li>
+<li><a href="#SOX-PLAY">SOX-PLAY</a></li>
+<li><a href="#DPLAY">DPLAY</a></li>
+<li><a href="#XMMS">XMMS</a></li>
+<li><a href="#SND">SND</a></li>
+<li><a href="#AUDACITY">AUDACITY</a></li>
+<li><a href="#AUD">AUD</a></li>
+<li><a href="#COOL-PLAYER">COOL-PLAYER</a></li>
+<li><a href="#TOTEM">TOTEM</a></li>
+<li><a href="#BMP">BMP</a></li>
+<li><a href="#MACPLAY">MACPLAY</a></li>
+<li><a href="#PLAY">PLAY</a></li>
+<li><a href="#SET-PLAYER">SET-PLAYER</a></li>
+<li><a href="#REVERSE-SAMPLE">REVERSE-SAMPLE</a></li>
+<li><a href="#FILTER">FILTER</a></li>
+<li><a href="#LOW-FILTER">LOW-FILTER</a></li>
+<li><a href="#HIGH-FILTER">HIGH-FILTER</a></li>
+<li><a href="#BAND-FILTER">BAND-FILTER</a></li>
+<li><a href="#CHANNEL">CHANNEL</a></li>
+<li><a href="#TONE-LIST">TONE-LIST</a></li>
+<li><a href="#MAIN-TONE-LIST">MAIN-TONE-LIST</a></li>
+<li><a href="#TONE-LIST-EN">TONE-LIST-EN</a></li>
+<li><a href="#MAIN-TONE-LIST-EN">MAIN-TONE-LIST-EN</a></li>
+<li><a href="#TONE-UP">TONE-UP</a></li>
+<li><a href="#TONE-DOWN">TONE-DOWN</a></li>
+<li><a href="#TONE">TONE</a></li>
+<li><a href="#OCTAVE-UP">OCTAVE-UP</a></li>
+<li><a href="#OCTAVE-DOWN">OCTAVE-DOWN</a></li>
+<li><a href="#OCTAVIFY">OCTAVIFY</a></li>
+<li><a href="#FILE-TONE">FILE-TONE</a></li>
+<li><a href="#SYMBOL-TONE">SYMBOL-TONE</a></li>
+<li><a href="#OCTAVIFY-TO-FILE">OCTAVIFY-TO-FILE</a></li>
+<li><a href="#DEFPARAMETER-FROM-TONES">DEFPARAMETER-FROM-TONES</a></li>
+<li><a href="#DEFPARAMETER-FROM-FILE">DEFPARAMETER-FROM-FILE</a></li>
+<li><a href="#LIST-ALL-TEST">LIST-ALL-TEST</a></li>
+<li><a href="#PRINT-TEST">PRINT-TEST</a></li>
+<li><a href="#S-FIND">S-FIND</a></li>
+<li><a href="#S-ADD">S-ADD</a></li>
+<li><a href="#S-COPY">S-COPY</a></li>
+<li><a href="#S-DELETE">S-DELETE</a></li>
+<li><a href="#S-MAP-FUN">S-MAP-FUN</a></li>
+<li><a href="#S-MAP">S-MAP</a></li>
+<li><a href="#S-PRINT">S-PRINT</a></li>
+<li><a href="#WITH-SONG">WITH-SONG</a></li>
+<li><a href="#SET-SONG">SET-SONG</a></li>
+<li><a href="#BUILD-SONG-FROM-MATCH">BUILD-SONG-FROM-MATCH</a></li>
+<li><a href="#S-SAVE-UNDO">S-SAVE-UNDO</a></li>
+<li><a href="#S-UNDO">S-UNDO</a></li>
+<li><a href="#S-REDO">S-REDO</a></li>
+<li><a href="#S-CLEAR-UNDO">S-CLEAR-UNDO</a></li>
+<li><a href="#S-LIST-UNDO">S-LIST-UNDO</a></li>
+<li><a href="#WITH-SAMPLE">WITH-SAMPLE</a></li>
+<li><a href="#SET-SAMPLE">SET-SAMPLE</a></li>
+<li><a href="#SAVE-UNDO">SAVE-UNDO</a></li>
+<li><a href="#UNDO">UNDO</a></li>
+<li><a href="#REDO">REDO</a></li>
+<li><a href="#CLEAR-UNDO">CLEAR-UNDO</a></li>
+<li><a href="#LIST-UNDO">LIST-UNDO</a></li>
+<li><a href="#FI">FI</a></li>
+<li><a href="#FT">FT</a></li>
+<li><a href="#FA">FA</a></li>
+<li><a href="#FLAG-CUT">FLAG-CUT</a></li>
+<li><a href="#FLAG-COPY">FLAG-COPY</a></li>
+<li><a href="#FLAG-INSERT">FLAG-INSERT</a></li>
+<li><a href="#TUTORIAL">TUTORIAL</a></li>
+<li><a href="#NEXT-TUTORIAL">NEXT-TUTORIAL</a></li>
+<li><a href="#AUTO-DOC-TUTORIAL">AUTO-DOC-TUTORIAL</a></li>
+<li><a href="#AUTO-DOC-ALL">AUTO-DOC-ALL</a></li>
+<li><a href="#ADD-SONG-KEY">ADD-SONG-KEY</a></li>
+<li><a href="#ADD-SONG-KEY-TONE">ADD-SONG-KEY-TONE</a></li>
+<li><a href="#ADD-SONG-KEY-OCTAVE">ADD-SONG-KEY-OCTAVE</a></li>
+<li><a href="#EDIT-SONG-KEY">EDIT-SONG-KEY</a></li>
+<li><a href="#REMOVE-SONG-KEY">REMOVE-SONG-KEY</a></li>
+<li><a href="#SHOW-SONG-RECORDER-INFO">SHOW-SONG-RECORDER-INFO</a></li>
+<li><a href="#RECORD-SONG">RECORD-SONG</a></li>
+<li><a href="#SAVE-SONG-KEYS">SAVE-SONG-KEYS</a></li>
+<li><a href="#LOAD-SONG-KEYS">LOAD-SONG-KEYS</a></li>
+</ul>
+<p><a href="#top" id="HELP" name="HELP">HELP (&amp;OPTIONAL NAME (STREAM *STANDARD-OUTPUT*))</a><br/>
+Get the default help or a help on function
+  Use (help) or (help 'a_function_name) for more details<br/><br/></p>
+
+<p><a href="#top" id="LONG-HELP" name="LONG-HELP">LONG-HELP (&amp;OPTIONAL (STREAM *STANDARD-OUTPUT*))</a><br/>
+Get the help for each wav defined functions<br/><br/></p>
+
+<p><a href="#top" id="AUTO-DOC" name="AUTO-DOC">AUTO-DOC (FILENAME &amp;OPTIONAL (TYPE :TEXT))</a><br/>
+Automatically generate the cl-wav-synth documentation from all exported functions and all tests.
+Type can be :text or :html<br/><br/></p>
+
+<p><a href="#top" id="MIX" name="MIX">MIX (SAMPLE1 SAMPLE2 &amp;KEY (VOL1 1) (VOL2 1) (START 0))</a><br/>
+Return a new sample with sample1 and sample2 mixed with volume vol1 and vol2,
+  the second sample begin a time 'start' seconds<br/><br/></p>
+
+<p><a href="#top" id="PITCH-UP" name="PITCH-UP">PITCH-UP (SAMPLE MUL)</a><br/>
+Return a new sample pitched up<br/><br/></p>
+
+<p><a href="#top" id="PITCH-DOWN" name="PITCH-DOWN">PITCH-DOWN (SAMPLE MUL)</a><br/>
+Return a new sample pitched down<br/><br/></p>
+
+<p><a href="#top" id="PITCH" name="PITCH">PITCH (SAMPLE MUL)</a><br/>
+Return a new sample pitched with the mul value<br/><br/></p>
+
+<p><a href="#top" id="LOCAL-PITCH" name="LOCAL-PITCH">LOCAL-PITCH (SAMPLE PITCH START END)</a><br/>
+Return a new sample pitched by pitch between start and end seconds<br/><br/></p>
+
+<p><a href="#top" id="LINEAR-PITCH" name="LINEAR-PITCH">LINEAR-PITCH (SAMPLE START-PITCH END-PITCH START END &amp;KEY (INTERVAL 10) (MAX-NUM 30)
+        (MAX-DEN 30))</a><br/>
+Return a new sample with a linear pitch between start and end seconds
+starting with start-pitch and ending with end-pitch.<br/><br/></p>
+
+<p><a href="#top" id="BEZIER-PITCH" name="BEZIER-PITCH">BEZIER-PITCH (SAMPLE T1 P1 T2 P2 T3 P3 T4 P4 &amp;KEY (INTERVAL 10) (MAX-NUM 30) (MAX-DEN 30))</a><br/>
+Return a new sample pitched from t1 p1 to t4 p4 with two control points
+t2 p2 and t3 p3<br/><br/></p>
+
+<p><a href="#top" id="STEREO" name="STEREO">STEREO (SAMPLE1 &amp;OPTIONAL SAMPLE2)</a><br/>
+Return a new stereo sample with sample1 on channel 1 and
+  sample2 on channel 2<br/><br/></p>
+
+<p><a href="#top" id="STEREO-PAN" name="STEREO-PAN">STEREO-PAN (SAMPLE &amp;OPTIONAL (PAN 0.5))</a><br/>
+Return a new stereo sample with sample on channel 1 and 2 with
+pan=0.5 -&gt; center, pan&lt;0.5 -&gt; left, pan&gt;0.5 -&gt; right<br/><br/></p>
+
+<p><a href="#top" id="QUADRI" name="QUADRI">QUADRI (SAMPLE1 SAMPLE2 SAMPLE3 SAMPLE4)</a><br/>
+Return a new quadri sample with sample1 on channel 1,
+  sample2 on channel 2 and so on for channels 3 and 4<br/><br/></p>
+
+<p><a href="#top" id="VOLUME" name="VOLUME">VOLUME (SAMPLE NEW-VOL)</a><br/>
+Return a new sample with volume multiplicated by new-vol<br/><br/></p>
+
+<p><a href="#top" id="DELAY" name="DELAY">DELAY (SAMPLE DELAY)</a><br/>
+Return a new sample with a delay of 'delay' seconds<br/><br/></p>
+
+<p><a href="#top" id="ECHO" name="ECHO">ECHO (SAMPLE DELAY VOLUMES)</a><br/>
+Return a new sample repeatated each 'delay' seconds with volumes
+  on the list volumes<br/><br/></p>
+
+<p><a href="#top" id="CUT" name="CUT">CUT (SAMPLE &amp;OPTIONAL START END)</a><br/>
+Return a new sample without the cutted part from
+start to end in seconds<br/><br/></p>
+
+<p><a href="#top" id="INSERT" name="INSERT">INSERT (SAMPLE SAMPLE2 START)</a><br/>
+Return a new sample with sample2 inserted at start seconds<br/><br/></p>
+
+<p><a href="#top" id="COPY" name="COPY">COPY (SAMPLE &amp;OPTIONAL START END)</a><br/>
+Return a new sample build from the original sample between
+start and end seconds<br/><br/></p>
+
+<p><a href="#top" id="CUT-I" name="CUT-I">CUT-I (SAMPLE &amp;OPTIONAL START-I END-I)</a><br/>
+Return a new sample without the cutted part from
+start to end in index numbers<br/><br/></p>
+
+<p><a href="#top" id="INSERT-I" name="INSERT-I">INSERT-I (SAMPLE SAMPLE2 START-I)</a><br/>
+Return a new sample with sample2 inserted at start in
+index number<br/><br/></p>
+
+<p><a href="#top" id="COPY-I" name="COPY-I">COPY-I (SAMPLE &amp;OPTIONAL START-I END-I)</a><br/>
+Return a new sample build from the original sample between
+start and end in index numbers<br/><br/></p>
+
+<p><a href="#top" id="ENV-FUN" name="ENV-FUN">ENV-FUN (SAMPLE POINTS)</a><br/>
+Set sample envelope. Points is a list like
+   (list (time1 volume1) (time2 volume2) ...)<br/><br/></p>
+
+<p><a href="#top" id="ENV" name="ENV">ENV (SAMPLE &amp;REST POINTS)</a><br/>
+Set sample envelope. Points are (time1 volume1) (time2 volume2)...<br/><br/></p>
+
+<p><a href="#top" id="ENV-SINUS" name="ENV-SINUS">ENV-SINUS (SAMPLE &amp;KEY (START 0) END (PERIOD 1) (MIN -1) (MAX 1))</a><br/>
+Set sample envelope with a sinus function. Start and end are in seconds,
+  period is the number of periods between start and end and min/max are
+  volume multiplicators<br/><br/></p>
+
+<p><a href="#top" id="ENV-BEZIER" name="ENV-BEZIER">ENV-BEZIER (SAMPLE T1 V1 T2 V2 T3 V3 T4 V4)</a><br/>
+Set sample envelope with a bezier curve with t1 v1 and t4 v4
+as endpoints and t2 v2 and t3 v3 as control points<br/><br/></p>
+
+<p><a href="#top" id="NULL-SAMPLE" name="NULL-SAMPLE">NULL-SAMPLE (TIME &amp;KEY (SPS 22050) (BPS 16))</a><br/>
+Create a muted sample.
+   sps = sample per seconds
+   bps = bits per sample<br/><br/></p>
+
+<p><a href="#top" id="SINUS-SAMPLE" name="SINUS-SAMPLE">SINUS-SAMPLE (TIME FREQ &amp;KEY (SPS 22050) (BPS 16) (AMPL 32767) (PHASE 0))</a><br/>
+Create a sinus sample.
+   sps = sample per seconds
+   bps = bits per sample<br/><br/></p>
+
+<p><a href="#top" id="SQUARE-SAMPLE" name="SQUARE-SAMPLE">SQUARE-SAMPLE (TIME FREQ &amp;KEY (SPS 22050) (BPS 16) (MIN -32767) (MAX 32767))</a><br/>
+Create a square sample.
+   sps = sample per seconds
+   bps = bits per sample
+   min and max = amplitudes<br/><br/></p>
+
+<p><a href="#top" id="LINE-SAMPLE" name="LINE-SAMPLE">LINE-SAMPLE (TIME FREQ &amp;KEY (SPS 22050) (BPS 16) (MIN -32767) (MAX 32767))</a><br/>
+Create a line sample.
+   sps = sample per seconds
+   bps = bits per sample
+   min and max = amplitudes<br/><br/></p>
+
+<p><a href="#top" id="LINE-SAMPLE." name="LINE-SAMPLE.">LINE-SAMPLE* (TIME FREQ &amp;KEY (SPS 22050) (BPS 16) (AMPLS '((0 -32767) (1 32767))))</a><br/>
+Create a line sample based on control points.
+   sps = sample per seconds
+   bps = bits per sample
+   ampls = List of amplitudes like '((val1 ampl1) (val2 ampl2)...)
+           where 0 (sample begining) &lt;= val &lt;= 1 (sample end)<br/><br/></p>
+
+<p><a href="#top" id="NOISE-SAMPLE" name="NOISE-SAMPLE">NOISE-SAMPLE (TIME FREQ &amp;KEY (SPS 22050) (BPS 16) (MIN -32767) (MAX 32767))</a><br/>
+Create a noise sample.
+   sps = sample per seconds
+   bps = bits per sample
+   min and max = amplitudes<br/><br/></p>
+
+<p><a href="#top" id="DRAW-ENV-FUN" name="DRAW-ENV-FUN">DRAW-ENV-FUN (SAMPLE POINTS)</a><br/>
+Draw sample envelope. Points is a list like
+   (list (time1 volume1) (time2 volume2) ...)<br/><br/></p>
+
+<p><a href="#top" id="DRAW-ENV" name="DRAW-ENV">DRAW-ENV (SAMPLE &amp;REST POINTS)</a><br/>
+Draw sample envelope. Points are (time1 volume1) (time2 volume2)...<br/><br/></p>
+
+<p><a href="#top" id="DRAW-ENV-BEZIER" name="DRAW-ENV-BEZIER">DRAW-ENV-BEZIER (SAMPLE T1 A1 T2 A2 T3 A3 T4 A4)</a><br/>
+Draw sample envelope with a bezier curve with t1 a1 and t4 a4
+as endpoints and t2 a2 and t3 a3 as control points<br/><br/></p>
+
+<p><a href="#top" id="PLAYER-INFO" name="PLAYER-INFO">PLAYER-INFO NIL</a><br/>
+Display informations about the current player<br/><br/></p>
+
+<p><a href="#top" id="MIKMOD-PLAY" name="MIKMOD-PLAY">MIKMOD-PLAY (&amp;REST ARGS)</a><br/>
+Play each samples with the mikmod library<br/><br/></p>
+
+<p><a href="#top" id="SOX-PLAY" name="SOX-PLAY">SOX-PLAY (&amp;REST SAMPLES)</a><br/>
+Call the sox play command on all samples<br/><br/></p>
+
+<p><a href="#top" id="DPLAY" name="DPLAY">DPLAY (&amp;REST SAMPLES)</a><br/>
+Call the default player command on all samples with the mikmod library
+  (if compiled in) or from the sox play command<br/><br/></p>
+
+<p><a href="#top" id="XMMS" name="XMMS">XMMS (&amp;REST SAMPLES)</a><br/>
+Call xmms on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="SND" name="SND">SND (&amp;REST SAMPLES)</a><br/>
+Call snd on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="AUDACITY" name="AUDACITY">AUDACITY (&amp;REST SAMPLES)</a><br/>
+Call audacity on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="AUD" name="AUD">AUD (&amp;REST SAMPLES)</a><br/>
+Call audacity on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="COOL-PLAYER" name="COOL-PLAYER">COOL-PLAYER (&amp;REST SAMPLES)</a><br/>
+Call cool-player on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="TOTEM" name="TOTEM">TOTEM (&amp;REST SAMPLES)</a><br/>
+Call totem on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="BMP" name="BMP">BMP (&amp;REST SAMPLES)</a><br/>
+Call beep-media-player on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="MACPLAY" name="MACPLAY">MACPLAY (&amp;REST SAMPLES)</a><br/>
+Call the Mac player on all samples (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="PLAY" name="PLAY">PLAY (&amp;REST SAMPLES)</a><br/>
+Default player, call play or coolplayer on Windows on all samples
+ (a sample class or a filename)<br/><br/></p>
+
+<p><a href="#top" id="SET-PLAYER" name="SET-PLAYER">SET-PLAYER (&amp;OPTIONAL PLAYER)</a><br/>
+Set the default player called with the 'play' function<br/><br/></p>
+
+<p><a href="#top" id="REVERSE-SAMPLE" name="REVERSE-SAMPLE">REVERSE-SAMPLE (SAMPLE &amp;KEY (START 0) END)</a><br/>
+Return a reversed sample from time start to end in seconds<br/><br/></p>
+
+<p><a href="#top" id="FILTER" name="FILTER">FILTER (SAMPLE &amp;OPTIONAL (AN '(1)) (BN '(0)))</a><br/>
+Apply a general filter on sample.
+Filter is: s(n) = a0 e(n) + a1 e(n-1) + a2 e(n-2) + ...
+                + b0 s(n-1) + b1 s(n-2) + b3 s(n-3) + ...
+an and bn are list of coefficients.
+Example: (filter sample '(0.3 0.2 0.1) '(0.1 0.2 0.3))<br/><br/></p>
+
+<p><a href="#top" id="LOW-FILTER" name="LOW-FILTER">LOW-FILTER (SAMPLE F0)</a><br/>
+Apply a low filter to sample where f0 is the cut frequency
+H(f) = 1/(1 + j f/f0) -&gt; s(n) = a e(n) + (1-a) s(n-1)
+a=Te/(tau+Te) with tau=1/(2 pi f0)<br/><br/></p>
+
+<p><a href="#top" id="HIGH-FILTER" name="HIGH-FILTER">HIGH-FILTER (SAMPLE F0)</a><br/>
+Apply a high filter to sample where f0 is the cut frequency
+H(f) = 1/(1 + j f0/f) -&gt; s(n) = a e(n) - a e(n-1) + a s(n-1)
+a=tau/(tau+Te) with tau=1/(2 pi f0)<br/><br/></p>
+
+<p><a href="#top" id="BAND-FILTER" name="BAND-FILTER">BAND-FILTER (SAMPLE F0 &amp;OPTIONAL (Q 1))</a><br/>
+Apply a band filter to sample where f0 is the cut frequency
+and Q is the quality coefficient.
+H(f) = 1/(1 + j Q (f/f0 - f0/f))
+-&gt; d s(n) = a e(n) - a e(n-1) + b s(n-1) + c s(n-2)
+with a=tau/Te  b=a+2 Q^2 a^2  c=-Q a^2  d=a+Q+Q a^2<br/><br/></p>
+
+<p><a href="#top" id="CHANNEL" name="CHANNEL">CHANNEL (SAMPLE CHAN)</a><br/>
+Extraxt channel 'chan' from sample<br/><br/></p>
+
+<p><a href="#top" id="TONE-LIST" name="TONE-LIST">TONE-LIST NIL</a><br/>
+Return the tone list<br/><br/></p>
+
+<p><a href="#top" id="MAIN-TONE-LIST" name="MAIN-TONE-LIST">MAIN-TONE-LIST NIL</a><br/>
+Return the main tone list<br/><br/></p>
+
+<p><a href="#top" id="TONE-LIST-EN" name="TONE-LIST-EN">TONE-LIST-EN NIL</a><br/>
+Return the tone list (english)<br/><br/></p>
+
+<p><a href="#top" id="MAIN-TONE-LIST-EN" name="MAIN-TONE-LIST-EN">MAIN-TONE-LIST-EN NIL</a><br/>
+Return the main tone list (english)<br/><br/></p>
+
+<p><a href="#top" id="TONE-UP" name="TONE-UP">TONE-UP (SAMPLE &amp;OPTIONAL (TONE-NUMBER 1) (MAX-NUM 30) (MAX-DEN 30))</a><br/>
+Tone up the sample by tone-number<br/><br/></p>
+
+<p><a href="#top" id="TONE-DOWN" name="TONE-DOWN">TONE-DOWN (SAMPLE &amp;OPTIONAL (TONE-NUMBER 1) (MAX-NUM 30) (MAX-DEN 30))</a><br/>
+Tone down the sample by tone-number<br/><br/></p>
+
+<p><a href="#top" id="TONE" name="TONE">TONE (SAMPLE FROM TO &amp;OPTIONAL (MAX-NUM 30) (MAX-DEN 30))</a><br/>
+Tone the sample from a tone to another
+From and to are keywords: do do# re re# mi fa fa# sol sol# la la# si
+                     or   c  c#  d  d#  e  f  f#  g   g#   a  a#  b<br/><br/></p>
+
+<p><a href="#top" id="OCTAVE-UP" name="OCTAVE-UP">OCTAVE-UP (SAMPLE &amp;OPTIONAL (MAX-NUM 30) (MAX-DEN 30))</a><br/>
+Return a new sample in the next octave with same tone<br/><br/></p>
+
+<p><a href="#top" id="OCTAVE-DOWN" name="OCTAVE-DOWN">OCTAVE-DOWN (SAMPLE &amp;OPTIONAL (MAX-NUM 30) (MAX-DEN 30))</a><br/>
+Return a new sample in the previous octave with same tone<br/><br/></p>
+
+<p><a href="#top" id="OCTAVIFY" name="OCTAVIFY">OCTAVIFY (SAMPLE DELAY &amp;OPTIONAL (TONES (MAIN-TONE-LIST)))</a><br/>
+Return a new sample with tones in the tones list (it can be the main tone or
+all melody tones) separated with delay in seconds.<br/><br/></p>
+
+<p><a href="#top" id="FILE-TONE" name="FILE-TONE">FILE-TONE (BASE TONE)</a><br/>
+Return the filename of a file based on his base and his tone<br/><br/></p>
+
+<p><a href="#top" id="SYMBOL-TONE" name="SYMBOL-TONE">SYMBOL-TONE (BASE TONE)</a><br/>
+Return a new symbol based on his base and his tone<br/><br/></p>
+
+<p><a href="#top" id="OCTAVIFY-TO-FILE" name="OCTAVIFY-TO-FILE">OCTAVIFY-TO-FILE (SAMPLE FILENAME-BASE &amp;OPTIONAL (TONES (MAIN-TONE-LIST)))</a><br/>
+Write sample in all tones in the file filename-base-tone_number-tone.
+ex: piano-03-re.wav. Produce one file per tone<br/><br/></p>
+
+<p><a href="#top" id="DEFPARAMETER-FROM-TONES" name="DEFPARAMETER-FROM-TONES">DEFPARAMETER-FROM-TONES (SAMPLE SYMBOL-BASE &amp;REST TONES)</a><br/>
+Define some new symbols based on there tones.
+Symbol are symbol-base-tone. ex: piano-re<br/><br/></p>
+
+<p><a href="#top" id="DEFPARAMETER-FROM-FILE" name="DEFPARAMETER-FROM-FILE">DEFPARAMETER-FROM-FILE (FILENAME-BASE SYMBOL-BASE &amp;REST TONES)</a><br/>
+Define some new symbols based on there tones from files produced with
+octavify-to-file for example. Symbol are symbol-base-tone. ex: piano-re<br/><br/></p>
+
+<p><a href="#top" id="LIST-ALL-TEST" name="LIST-ALL-TEST">LIST-ALL-TEST (&amp;OPTIONAL (STREAM *STANDARD-OUTPUT*))</a><br/>
+List all available tests<br/><br/></p>
+
+<p><a href="#top" id="PRINT-TEST" name="PRINT-TEST">PRINT-TEST (NUM &amp;OPTIONAL (STREAM *STANDARD-OUTPUT*))</a><br/>
+View the code for test 'num'<br/><br/></p>
+
+<p><a href="#top" id="S-FIND" name="S-FIND">S-FIND (&amp;KEY TIME FORM POS TAGS COLOR LENGTH ALL)</a><br/>
+Return a list of all song samples matching time/form/pos/tags/color/length.
+time, pos, color and length can be real numbers or conditions.
+For examples:
+  :time (= time 10) is the same as :time 10
+  :pos (&lt; 1 pos 2) find all samples with a position between 1 and 2
+    and is the same as :pos (and (&lt; 1 pos) (&lt; pos 2))
+Tags can be a symbol, a number or a list (or something else)
+If tags is a list check for its members
+For examples:
+  :tags sel find all tags with sel in it.
+     ex: (bar sel foo) and sel match
+  :tags (sel bar) find all tags with sel and bar in it
+     ex: (bar sel foo) match<br/><br/></p>
+
+<p><a href="#top" id="S-ADD" name="S-ADD">S-ADD (&amp;KEY (TIME 0) FORM (POS 0) TAGS (COLOR 65280) (LENGTH 0.2))</a><br/>
+Add a sample on song<br/><br/></p>
+
+<p><a href="#top" id="S-COPY" name="S-COPY">S-COPY (SONG-SAMPLE &amp;KEY TIME FORM POS TAGS COLOR LENGTH)</a><br/>
+Copy a sample in a song<br/><br/></p>
+
+<p><a href="#top" id="S-DELETE" name="S-DELETE">S-DELETE (&amp;KEY TIME FORM POS TAGS COLOR LENGTH ALL)</a><br/>
+Delete samples matching time/form/pos/tags/color/length as in s-find<br/><br/></p>
+
+<p><a href="#top" id="S-MAP-FUN" name="S-MAP-FUN">S-MAP-FUN (&amp;KEY TIME FORM POS TAGS COLOR LENGTH ALL FUN)</a><br/>
+Map a function over a sample in a song matching time/form/pos/tags/color/length
+as in s-find. When 'all' is true, map on all samples in the song<br/><br/></p>
+
+<p><a href="#top" id="S-MAP" name="S-MAP">S-MAP ((&amp;KEY TIME FORM POS TAGS COLOR LENGTH ALL) &amp;BODY BODY)</a><br/>
+Apply body on sample matching time/form/pos/tags/color/length as in s-find.
+   Capture intentionally the sample into the variable 'it'
+   and sample slots (as time, form, pos and tags) are bounds.
+   When 'all' is true, apply on all samples in the song<br/><br/></p>
+
+<p><a href="#top" id="S-PRINT" name="S-PRINT">S-PRINT (SONG-SAMPLE)</a><br/>
+Print a sample in a song<br/><br/></p>
+
+<p><a href="#top" id="WITH-SONG" name="WITH-SONG">WITH-SONG (&amp;BODY BODY)</a><br/>
+Apply body on the current loaded song. Capture intentionally the song
+  in the variable 'it'. (Note: a song is just a list of song-sample)<br/><br/></p>
+
+<p><a href="#top" id="SET-SONG" name="SET-SONG">SET-SONG (&amp;BODY BODY)</a><br/>
+Set the current loaded song with the result of body.
+  Capture intentionally the song in the variable 'it'.
+  (Note: a song is just a list of song-sample)<br/><br/></p>
+
+<p><a href="#top" id="BUILD-SONG-FROM-MATCH" name="BUILD-SONG-FROM-MATCH">BUILD-SONG-FROM-MATCH (FILENAME &amp;KEY TIME FORM POS TAGS COLOR LENGTH ALL)</a><br/>
+Build a song in filename with samples in a song matching time/form/pos/tags/color/length
+as in s-find.
+   When 'all' is true, build from all samples in the song<br/><br/></p>
+
+<p><a href="#top" id="S-SAVE-UNDO" name="S-SAVE-UNDO">S-SAVE-UNDO NIL</a><br/>
+Save the current song form undo/redo operation<br/><br/></p>
+
+<p><a href="#top" id="S-UNDO" name="S-UNDO">S-UNDO (&amp;OPTIONAL (LEVEL NIL))</a><br/>
+Undo the effect of last song operation<br/><br/></p>
+
+<p><a href="#top" id="S-REDO" name="S-REDO">S-REDO (&amp;OPTIONAL (LEVEL NIL))</a><br/>
+Redo the effect of last song operation<br/><br/></p>
+
+<p><a href="#top" id="S-CLEAR-UNDO" name="S-CLEAR-UNDO">S-CLEAR-UNDO (&amp;OPTIONAL (MAX-LEVEL 100))</a><br/>
+Clear all undo/redo saved states for song<br/><br/></p>
+
+<p><a href="#top" id="S-LIST-UNDO" name="S-LIST-UNDO">S-LIST-UNDO (&amp;OPTIONAL (MAX-LEVEL 100))</a><br/>
+List all undo/redo saved states for song<br/><br/></p>
+
+<p><a href="#top" id="WITH-SAMPLE" name="WITH-SAMPLE">WITH-SAMPLE (&amp;BODY BODY)</a><br/>
+Apply body on the current loaded sample. Capture intentionally the sample
+  into the variable 'it'<br/><br/></p>
+
+<p><a href="#top" id="SET-SAMPLE" name="SET-SAMPLE">SET-SAMPLE (&amp;BODY BODY)</a><br/>
+Set the current loaded sample with the result of body.
+   Capture intentionally the sample into the variable 'it'.
+   And save the result with a undo/redo method<br/><br/></p>
+
+<p><a href="#top" id="SAVE-UNDO" name="SAVE-UNDO">SAVE-UNDO NIL</a><br/>
+Save the current sample form undo/redo operation<br/><br/></p>
+
+<p><a href="#top" id="UNDO" name="UNDO">UNDO (&amp;OPTIONAL (LEVEL NIL))</a><br/>
+Undo the effect of set-sample<br/><br/></p>
+
+<p><a href="#top" id="REDO" name="REDO">REDO (&amp;OPTIONAL (LEVEL NIL))</a><br/>
+Redo the effect of set-sample<br/><br/></p>
+
+<p><a href="#top" id="CLEAR-UNDO" name="CLEAR-UNDO">CLEAR-UNDO (&amp;OPTIONAL (MAX-LEVEL 100))</a><br/>
+Clear all undo/redo saved states<br/><br/></p>
+
+<p><a href="#top" id="LIST-UNDO" name="LIST-UNDO">LIST-UNDO (&amp;OPTIONAL (MAX-LEVEL 100))</a><br/>
+List all undo/redo saved states<br/><br/></p>
+
+<p><a href="#top" id="FI" name="FI">FI (NUMBER)</a><br/>
+Return the index of the sample flag 'number' (setfable)<br/><br/></p>
+
+<p><a href="#top" id="FT" name="FT">FT (NUMBER)</a><br/>
+Return the time of the sample flag 'number' (setfable)<br/><br/></p>
+
+<p><a href="#top" id="FA" name="FA">FA (NUMBER)</a><br/>
+Return the amplitude of the sample flag 'number' (setfable)<br/><br/></p>
+
+<p><a href="#top" id="FLAG-CUT" name="FLAG-CUT">FLAG-CUT (SAMPLE FLAG-NUMBER1 FLAG-NUMBER2)</a><br/>
+Return a new sample without the cutted part between
+flag-number1  flag-number2<br/><br/></p>
+
+<p><a href="#top" id="FLAG-COPY" name="FLAG-COPY">FLAG-COPY (SAMPLE FLAG-NUMBER1 FLAG-NUMBER2)</a><br/>
+Return a new sample build from the original sample between
+flag-number1 and flag-number2<br/><br/></p>
+
+<p><a href="#top" id="FLAG-INSERT" name="FLAG-INSERT">FLAG-INSERT (SAMPLE FLAG-NUMBER1 FLAG-NUMBER2 FLAG-NUMBER3)</a><br/>
+Return a new sample with part between flag-number1 and flag-number2
+inserted at flag-number3 time<br/><br/></p>
+
+<p><a href="#top" id="TUTORIAL" name="TUTORIAL">TUTORIAL (&amp;OPTIONAL (HIT-DELAY 0.1))</a><br/>
+Run a tutorial to demonstrate a use of the sample editor<br/><br/></p>
+
+<p><a href="#top" id="NEXT-TUTORIAL" name="NEXT-TUTORIAL">NEXT-TUTORIAL NIL</a><br/>
+Run the next tutorial step<br/><br/></p>
+
+<p><a href="#top" id="AUTO-DOC-TUTORIAL" name="AUTO-DOC-TUTORIAL">AUTO-DOC-TUTORIAL (FILENAME &amp;OPTIONAL (TYPE :TEXT))</a><br/>
+automatically create a tutorial documentation of cl-wav-synth. Type can be :text or :html<br/><br/></p>
+
+<p><a href="#top" id="AUTO-DOC-ALL" name="AUTO-DOC-ALL">AUTO-DOC-ALL (&amp;OPTIONAL (DIRECTORY "Doc/"))</a><br/>
+Automatically generate all cl-wav-synth documentations: main documentation
+and tutorial documentation<br/><br/></p>
+
+<p><a href="#top" id="ADD-SONG-KEY" name="ADD-SONG-KEY">ADD-SONG-KEY (&amp;KEY CHAR FORM POS TAGS COLOR)</a><br/>
+Define a new key for the song recorder.
+char is a character or it'll be asked from a keypress.
+form, pos, tags and color are the attribute of a song-sample<br/><br/></p>
+
+<p><a href="#top" id="ADD-SONG-KEY-TONE" name="ADD-SONG-KEY-TONE">ADD-SONG-KEY-TONE (FORM &amp;REST DEF)</a><br/>
+Define some new keys for the song recorder.
+Def is a list like this '(char1 keyword) '(char2 keyword2) ...
+charN is a key to press in the recorder.
+keywordN is a tone (:do :re ... or :c :d ...)<br/><br/></p>
+
+<p><a href="#top" id="ADD-SONG-KEY-OCTAVE" name="ADD-SONG-KEY-OCTAVE">ADD-SONG-KEY-OCTAVE (FORM DEF)</a><br/>
+Define some new keys for the song recorder.
+Def is a list of characters to bind. The first char is :do (or :c), the
+second :re (or :d) and so on...<br/><br/></p>
+
+<p><a href="#top" id="EDIT-SONG-KEY" name="EDIT-SONG-KEY">EDIT-SONG-KEY (&amp;KEY CHAR FORM POS TAGS COLOR)</a><br/>
+Edit a key for the song recorder.
+char is a character or it'll be asked from a keypress.
+form, pos, tags and color are the attribute of a song-sample<br/><br/></p>
+
+<p><a href="#top" id="REMOVE-SONG-KEY" name="REMOVE-SONG-KEY">REMOVE-SONG-KEY (&amp;OPTIONAL CHAR)</a><br/>
+Remove a key for the song recorder<br/><br/></p>
+
+<p><a href="#top" id="SHOW-SONG-RECORDER-INFO" name="SHOW-SONG-RECORDER-INFO">SHOW-SONG-RECORDER-INFO NIL</a><br/>
+Show all keys defined for the song recorder<br/><br/></p>
+
+<p><a href="#top" id="RECORD-SONG" name="RECORD-SONG">RECORD-SONG (&amp;OPTIONAL (DELAY 0.01))</a><br/>
+Record a new song with a virtual keyboard. You can define new
+keys with add-song-key. Delay is the key granularity.<br/><br/></p>
+
+<p><a href="#top" id="SAVE-SONG-KEYS" name="SAVE-SONG-KEYS">SAVE-SONG-KEYS (FILENAME)</a><br/>
+Save the current keys for the song recorder<br/><br/></p>
+
+<p><a href="#top" id="LOAD-SONG-KEYS" name="LOAD-SONG-KEYS">LOAD-SONG-KEYS (FILENAME)</a><br/>
+Load keys for the song recorder<br/><br/></p>
+
+<h2><a id="tests" name="tests">Available tests are:</a></h2>
+<ul>
+<li>TEST1: Test read-sample, print-header and write-sample on a test WAV file</li>
+<li>TEST2: Test read-sample, print-header and write-sample on another test WAV file</li>
+<li>TEST3: Test sample-make-noise on a one channel sample</li>
+<li>TEST4: Test sample-make-noise and sample-make-sin on a two channels sample</li>
+<li>TEST5: Test sample-make-square and sample-make-sin</li>
+<li>TEST6: Test sample-make-line*</li>
+<li>TEST7: Test sample-make-line and sample-make-line*</li>
+<li>TEST8: Test four channels sample</li>
+<li>TEST9: Test copy-sample -&gt; selection of a small piece of sample</li>
+<li>TEST1000: Helper function to create sample test</li>
+<li>TEST1005: Helper function to test copy-sample</li>
+<li>TEST10: Test copy-sample on a one channel sample</li>
+<li>TEST11: Test copy-sample on a two channels / 32 bits sample</li>
+<li>TEST12: Test copy-sample on a three channels sample</li>
+<li>TEST13: Test copy-sample on a four channels sample</li>
+<li>TEST14: Test copy-sample on a five channels sample</li>
+<li>TEST1010: Helper function to test read-sample</li>
+<li>TEST15: Test read-sample with start / end time on a one channel sample</li>
+<li>TEST16: Test read-sample with start / end time on a two channel sample</li>
+<li>TEST17: Test read-sample with start / end time on a three channel sample</li>
+<li>TEST18: Test read-sample with start / end time on a four channel sample</li>
+<li>TEST19: Test read-sample with start / end time on a five channel sample</li>
+<li>TEST1015: Helper function to test write sample</li>
+<li>TEST20: Test write-sample with start / end time on a one channel sample</li>
+<li>TEST21: Test write-sample with start / end time on a two channel sample</li>
+<li>TEST22: Test write-sample with start / end time on a three channel sample</li>
+<li>TEST23: Test write-sample with start / end time on a four channel sample</li>
+<li>TEST24: Test write-sample with start / end time on a five channel sample</li>
+<li>TEST25: Test direct access to data sample</li>
+<li>TEST26: Test add channel on a sample</li>
+<li>TEST27: Test extract-channel from a sample</li>
+<li>TEST28: Test add-channel (with start time) and extract-channel</li>
+<li>TEST29: Test mix-sample</li>
+<li>TEST30: An other mix-sample test</li>
+<li>TEST31: Test apply-on-sample</li>
+<li>TEST32: An other apply-on-sample test -&gt; distortion</li>
+<li>TEST33: Test pitch-up</li>
+<li>TEST34: Test pitch-down</li>
+<li>TEST35: Test pitch (a mix of pitch-down and pitch-up)</li>
+<li>TEST36: Test time&lt;-&gt;freq convert sample to spectre</li>
+<li>TEST40: Test build song</li>
+<li>TEST41: Test build song (2)</li>
+<li>TEST42: Test build song (3)</li>
+<li>TEST43: Test build song form list</li>
+<li>TEST44: Test with-build-song</li>
+<li>TEST45: Test with-song</li>
+<li>TEST46: Test write-song</li>
+<li>TEST47: Test read-song</li>
+<li>TEST100: Simple Clim test: display a sample</li>
+<li>TEST101: Simple Clim test: display a spectre</li>
+<li>TEST102: Simple Clim test: display a sample build from frequences</li>
+<li>TEST103: Simple Clim test: display a sample build from frequences (2)</li>
+<li>TEST104: Simple Clim test: display a sample build from frequences (3)</li>
+<li>TEST105: Simple Clim test: display a sample build from frequences</li>
+<li>TEST106: Simple Clim test: display a sample build from frequences</li>
+<li>TEST120: Test write and read 16 bits</li>
+<li>TEST121: Test write and read 8 bits</li>
+<li>TEST122: Test write and read 32 bits</li>
+<li>TEST123: Test write, read and append 16 bits</li>
+<li>TEST124: Test write, read and append 8 bits</li>
+<li>TEST125: Test write, read and append 32 bits</li>
+<li>TEST140: Test build song</li>
+</ul>
+<p><small>(This documentation has been automatically generated with the
+function auto-doc)</small></p>
+
+<div class="footer">
+     <a href="mailto:hocwp@free.fr">Philippe Brochard</a>, 2007 02 05
+   </div>
+
+   <div class="check">
+     <a href="http://validator.w3.org/check/referer">
+
+        Valid XHTML 1.0 Strict</a>
+  </div>
+ </body>
+</html>
