@@ -228,10 +228,11 @@
 	(1/2 interactor-container))
       pointer-doc))
    (build-sample-ni
-    (9/20 map-sample)
-    (5/20 map-freq)
-    (5/20 map-phase)
-    (1/20 interactor-container))
+    (vertically ()
+      (9/20 map-sample)
+      (5/20 map-freq)
+      (5/20 map-phase)
+      (1/20 interactor-container)))
    (build-song
     (vertically ()
       (1/2 map-song)
