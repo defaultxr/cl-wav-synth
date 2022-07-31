@@ -164,23 +164,20 @@
 			  ("Listener"      :menu listener-command-table)
 			  ("Help"          :menu help-command-table))))
   (:panes
-   (map-sample (make-pane 'sample-pane :min-heigth 200
-                                       :scroll-bars nil
+   (map-sample (make-pane 'sample-pane :min-height 200
                                        :foreground +white+ :background +grey+
                                        :display-time :command-loop
                                        :display-function #'draw-sample
                                        :default-view +graphical-view+))
-   (map-freq (make-pane 'freq-pane :min-heigth 100
-                                   :scroll-bars nil
+   (map-freq (make-pane 'freq-pane :min-height 100
                                    :foreground +white+ :background +grey+
                                    :display-time :command-loop
                                    :display-function #'draw-freqs))
-   (map-phase (make-pane 'phase-pane :min-heigth 100
-                                     :scroll-bars nil
+   (map-phase (make-pane 'phase-pane :min-height 100
                                      :foreground +white+ :background +grey+
                                      :display-time :command-loop
                                      :display-function #'draw-phase))
-   (map-song (make-pane 'song-pane :min-heigth 100 :scroll-bars nil
+   (map-song (make-pane 'song-pane :min-height 100
                                    :foreground +white+ :background +grey+
                                    :display-function #'draw-song
                                    :default-view +graphical-view+))
