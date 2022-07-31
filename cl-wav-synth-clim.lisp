@@ -165,25 +165,25 @@
 			  ("Help"          :menu help-command-table))))
   (:panes
    (map-sample (make-pane 'sample-pane :min-heigth 200
-			  :scroll-bars nil
-			  :foreground +white+ :background +grey+
-			  :display-time :command-loop
-			  :display-function #'draw-sample
-			  :default-view +graphical-view+))
+                                       :scroll-bars nil
+                                       :foreground +white+ :background +grey+
+                                       :display-time :command-loop
+                                       :display-function #'draw-sample
+                                       :default-view +graphical-view+))
    (map-freq (make-pane 'freq-pane :min-heigth 100
-			:scroll-bars nil
-			:foreground +white+ :background +grey+
-			:display-time :command-loop
-			:display-function #'draw-freqs))
+                                   :scroll-bars nil
+                                   :foreground +white+ :background +grey+
+                                   :display-time :command-loop
+                                   :display-function #'draw-freqs))
    (map-phase (make-pane 'phase-pane :min-heigth 100
-			 :scroll-bars nil
-			 :foreground +white+ :background +grey+
-			 :display-time :command-loop
-			 :display-function #'draw-phase))
+                                     :scroll-bars nil
+                                     :foreground +white+ :background +grey+
+                                     :display-time :command-loop
+                                     :display-function #'draw-phase))
    (map-song (make-pane 'song-pane :min-heigth 100 :scroll-bars nil
-			:foreground +white+ :background +grey+
-			:display-function #'draw-song
-			:default-view +graphical-view+))
+                                   :foreground +white+ :background +grey+
+                                   :display-function #'draw-song
+                                   :default-view +graphical-view+))
    (pointer-doc :pointer-documentation)
    (interactor-container (make-clim-stream-pane
 			  :type 'clim-listener::listener-interactor-pane
@@ -192,10 +192,10 @@
 			  :default-view clim-listener::+listener-view+)))
   (:layouts
    (default
-       (vertically ()
-	 (1/2 map-sample)
-	 (1/2 interactor-container)
-	 pointer-doc))
+    (vertically ()
+      (1/2 map-sample)
+      (1/2 interactor-container)
+      pointer-doc))
    (view-sample
     (vertically ()
       (1/2 map-sample)
